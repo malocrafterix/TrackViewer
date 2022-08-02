@@ -33,12 +33,12 @@ let ImageY;
 let VPHeight;
 let VPWidth;
 function preload(){
-  let countr;
+  
 
 }
 
 function setup() {
-  countr = 0;
+  
   MaxResolution= 2000;
   LayerHeight =getHeightResolution(MaxResolution);
   LayerWidth = getWidthResolution(MaxResolution);
@@ -88,12 +88,10 @@ function windowResized(){
    VPWidth = window.innerWidth;
 
   }else{
-    document.getElementById("xCoord").value = countr;
-   countr++;
+  VPHeight = window.innerHeight;
+   VPWidth = window.innerWidth;
  resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
-   VPHeight = window.innerHeight;
-   VPWidth = window.innerWidth;
   }
 }
  function OnChangedFormat(){
