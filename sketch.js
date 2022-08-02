@@ -64,6 +64,7 @@ function setup() {
   TitleLayer.textFont("Roboto")
  
   UploadButton = select("#DownloadButton")
+  mergeLayers();
 
 
  
