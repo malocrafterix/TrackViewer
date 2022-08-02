@@ -33,7 +33,7 @@ function getCanvasWidth(){
  
     
       
-  if(windowWidth<windowHeight){
+  if(window.innerWidth<window.innerHeight){
     smallerSide = "width";
     
   }
@@ -42,13 +42,13 @@ function getCanvasWidth(){
     
    }
   if(smallerSide == "width"){
-    result = windowWidth*0.7;
+    result = window.innerWidth*0.7;
      document.getElementById("GPXUploaderWrapper").style.width = result.toString() +"px";
-        return windowWidth*0.7
+        return window.innerWidth*0.7
   }else{
-    result = windowHeight*0.7*format;
+    result = window.innerHeight*0.7*format;
      document.getElementById("GPXUploaderWrapper").style.width = result.toString() +"px";
-        return windowHeight*format*0.7;
+        return window.innerHeight*format*0.7;
       }
       
       
@@ -59,7 +59,7 @@ function getCanvasWidth(){
      let smallerSide;
     
       
-  if(windowWidth<windowHeight){
+  if(window.innerWidth<window.innerHeight){
     smallerSide = "width";
   }
   else{
@@ -67,11 +67,11 @@ function getCanvasWidth(){
    }
  
       if(smallerSide == "width"){
-        return windowWidth* 1/format*0.7 
+        return window.innerWidth* 1/format*0.7 
 
         
       }else{
-        return windowHeight*0.7;
+        return window.innerHeight*0.7;
       }
       
       
