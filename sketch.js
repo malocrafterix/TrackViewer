@@ -75,7 +75,7 @@ function setup() {
 function windowResized(){
   resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
-  WebsiteWidth = windowWidth;
+  
   
 }
  function OnChangedFormat(){
