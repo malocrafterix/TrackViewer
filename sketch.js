@@ -30,19 +30,20 @@ let RegionFontSize;
 let Roboto;
 let ImageX;
 let ImageY;
-
+let VPHeight;
+let VPWidth;
 function preload(){
+  let countr;
 
 }
 
 function setup() {
-
+  countr = 0;
   MaxResolution= 2000;
   LayerHeight =getHeightResolution(MaxResolution);
   LayerWidth = getWidthResolution(MaxResolution);
   var canvas = createCanvas(getCanvasWidth(),getCanvasHeight())
   canvas.parent("sketch-holder");
-
   background(255);
   TrackLayer = createGraphics(LayerWidth,LayerHeight);
   TrackLayer.background(255);
@@ -61,7 +62,7 @@ function setup() {
   RegionY = 1350;
   RegionFontSize = 100;
   LocationName = "Location";
-  windowResized()
+  
 
   RegionName = "[Region]";
   ImageX =  parseInt(document.getElementById("ImageX").value);
@@ -69,6 +70,8 @@ function setup() {
   
   TitleLayer.textFont("Roboto")
   UploadButton = select("#DownloadButton")
+  VPHeight = window.innerHeight;
+   VPWidth = window.innerWidth;
   mergeLayers();
 
  
@@ -79,8 +82,19 @@ function setup() {
    
 }
 function windowResized(){
+  
+ if(VPHeight != window.innerHeight && VPWidth == window.innerWidth){
+   VPHeight = window.innerHeight;
+   VPWidth = window.innerWidth;
+
+  }else{
+    document.getElementById("xCoord").value = countr;
+   countr++;
  resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
+   VPHeight = window.innerHeight;
+   VPWidth = window.innerWidth;
+  }
 }
  function OnChangedFormat(){
   LayerHeight =getHeightResolution(MaxResolution);
