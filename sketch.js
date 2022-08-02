@@ -29,6 +29,7 @@ let RegionName;
 let RegionFontSize;
 let Roboto;
 let WebsiteWidth;
+let WebsiteHeight;
 function preload(){
 
 }
@@ -46,6 +47,7 @@ function setup() {
   TitleLayer= createGraphics(LayerWidth ,LayerHeight);
   TitleLayer.background(255);
   WebsiteWidth = windowWidth;
+  WebsiteHeight = windowHeight;
   TracksAsCoord = [];
   Padding =  document.getElementById("Padding").value;
   Zoom =  document.getElementById("Zoom").value;  
@@ -76,10 +78,12 @@ function setup() {
    
 }
 function windowResized(){
-  if(WebsiteWidth == windowWidth)
- resizeCanvas(getCanvasWidth(),getCanvasHeight())
+  if((WebsiteWidth == windowWidth) && (WebsiteHeight != windowHeight)){
+  } else{
+  resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
-  WebsiteWidth = windowWith;
+  WebsiteWidth = windowWidth;
+  }
 }
  function OnChangedFormat(){
   LayerHeight =getHeightResolution(MaxResolution);
