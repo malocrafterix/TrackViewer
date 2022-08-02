@@ -82,9 +82,11 @@ function setup() {
    
 }
 function windowResized(){
-  if(VPHeight != window.innerHeight){
+  if((VPHeight == window.innerHeight) || VPWidth != window.innerWidth){
  resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
+    VPHeight = window.innerHeight;
+   VPWidth = window.innerWidth;
   }
 }
  function OnChangedFormat(){
