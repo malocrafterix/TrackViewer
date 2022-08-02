@@ -35,7 +35,7 @@ function setup() {
   MaxResolution= 2000;
   LayerHeight =getHeightResolution(MaxResolution);
   LayerWidth = getWidthResolution(MaxResolution);
-  var canvas = createCanvas(windowWidth,windowHeight())
+  var canvas = createCanvas(windowWidth,windowWidth)
   canvas.parent("sketch-holder");
   background(255);
   TrackLayer = createGraphics(LayerWidth,LayerHeight);
