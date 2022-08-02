@@ -65,6 +65,7 @@ function setup() {
  
   UploadButton = select("#DownloadButton")
   mergeLayers();
+  windowResized();
 
 
  
