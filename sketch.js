@@ -30,6 +30,7 @@ let RegionFontSize;
 let Roboto;
 let ImageX;
 let ImageY;
+let VPWidth;
 
 function preload(){
 
@@ -62,13 +63,15 @@ function setup() {
   RegionFontSize = 100;
   LocationName = "Location";
   windowResized()
-
+  
   RegionName = "[Region]";
   ImageX =  parseInt(document.getElementById("ImageX").value);
   ImageY =  parseInt(document.getElementById("ImageY").value);
   
   TitleLayer.textFont("Roboto")
   UploadButton = select("#DownloadButton")
+  VPWidth = window.innerWidth;
+  VPHeight = window.innerHeight;
   mergeLayers();
 
  
@@ -79,8 +82,10 @@ function setup() {
    
 }
 function windowResized(){
+  if(VPHeight != window.innerHeight){
  resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
+  }
 }
  function OnChangedFormat(){
   LayerHeight =getHeightResolution(MaxResolution);
