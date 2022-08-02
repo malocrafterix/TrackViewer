@@ -62,7 +62,7 @@ function setup() {
   
   
   TitleLayer.textFont("Roboto")
-  windowResized();
+ 
   UploadButton = select("#DownloadButton")
 
 
