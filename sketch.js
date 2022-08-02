@@ -56,7 +56,7 @@ function setup() {
   TrackWidth =  document.getElementById("TrackWidth").value;
   LocationX = 150;
   LocationY = 1250;
-  
+  windowResized();
   LocationFontSize =150;
   RegionX = 150;
   RegionY = 1350;
