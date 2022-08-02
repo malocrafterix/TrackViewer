@@ -50,7 +50,7 @@ canvas {
 .grid{
   padding:5px;
   display:grid;
-  min-width:300px;
+  min-width:140px;
   border-style:solid;
   border-radius:5px;
   border-width:2px;
