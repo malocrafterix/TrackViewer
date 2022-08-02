@@ -28,11 +28,7 @@ let RegionY;
 let RegionName;
 let RegionFontSize;
 let Roboto;
-let WebsiteWidth;
-let WebsiteHeight;
-function preload(){
 
-}
 
 function setup() {
 
@@ -46,8 +42,7 @@ function setup() {
   TrackLayer.background(255);
   TitleLayer= createGraphics(LayerWidth ,LayerHeight);
   TitleLayer.background(255);
-  WebsiteWidth = windowWidth;
-  WebsiteHeight = windowHeight;
+ 
   TracksAsCoord = [];
   Padding =  document.getElementById("Padding").value;
   Zoom =  document.getElementById("Zoom").value;  
@@ -78,12 +73,10 @@ function setup() {
    
 }
 function windowResized(){
-  if((WebsiteWidth == windowWidth) && (WebsiteHeight != windowHeight)){
-  } else{
   resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
   WebsiteWidth = windowWidth;
-  }
+  
 }
  function OnChangedFormat(){
   LayerHeight =getHeightResolution(MaxResolution);
