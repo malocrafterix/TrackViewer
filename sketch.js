@@ -28,45 +28,48 @@ let RegionY;
 let RegionName;
 let RegionFontSize;
 let Roboto;
+let ImageX;
+let ImageY;
 
+function preload(){
+
+}
 
 function setup() {
 
   MaxResolution= 2000;
   LayerHeight =getHeightResolution(MaxResolution);
   LayerWidth = getWidthResolution(MaxResolution);
-  var canvas = createCanvas(windowWidth,windowWidth)
+  var canvas = createCanvas(getCanvasWidth(),getCanvasHeight())
   canvas.parent("sketch-holder");
+
   background(255);
   TrackLayer = createGraphics(LayerWidth,LayerHeight);
   TrackLayer.background(255);
   TitleLayer= createGraphics(LayerWidth ,LayerHeight);
   TitleLayer.background(255);
- 
+  
   TracksAsCoord = [];
   Padding =  document.getElementById("Padding").value;
   Zoom =  document.getElementById("Zoom").value;  
   TrackWidth =  document.getElementById("TrackWidth").value;
   LocationX = 150;
   LocationY = 1250;
-  windowResized();
+  
   LocationFontSize =150;
   RegionX = 150;
   RegionY = 1350;
   RegionFontSize = 100;
   LocationName = "Location";
-  
+  windowResized()
 
   RegionName = "[Region]";
-
-  
+  ImageX =  parseInt(document.getElementById("ImageX").value);
+  ImageY =  parseInt(document.getElementById("ImageY").value);
   
   TitleLayer.textFont("Roboto")
- 
   UploadButton = select("#DownloadButton")
   mergeLayers();
-
-
 
  
 
@@ -76,10 +79,8 @@ function setup() {
    
 }
 function windowResized(){
-  resizeCanvas(getCanvasWidth(),getCanvasHeight())
+ resizeCanvas(getCanvasWidth(),getCanvasHeight())
   image(TitleLayer,0, 0,getCanvasWidth(),getCanvasHeight());
-  
-  
 }
  function OnChangedFormat(){
   LayerHeight =getHeightResolution(MaxResolution);
@@ -193,22 +194,27 @@ function saveImage(){
 }
 
 async function drawCanvas(){
-
+  
   await printLoading();
+  ImageX =  parseInt(document.getElementById("ImageX").value);
+  ImageY =  parseInt(document.getElementById("ImageY").value);
   Zoom =  document.getElementById("Zoom").value;
   TrackWidth =  document.getElementById("TrackWidth").value;
   TrackLayer.background(255);
+  
+  TrackLayer.stroke(document.getElementById("TrackC").value)
   getGlobalMappingFactor();
   let displacementX = centerX();
   let displacementY = centerY()
   for(let k = 0; k<TracksAsCoord.length;k++){
+    
     lastPoint = TracksAsCoord[k][0];
     for(let i = 1; i<TracksAsCoord[k].length;i++){
        TrackLayer.strokeWeight(TrackWidth)
-      TrackLayer.line(lastPoint.x *GlobalMappingFactor + displacementX,
-          LayerHeight-lastPoint.y * GlobalMappingFactor-displacementY,
-           TracksAsCoord[k][i].x * GlobalMappingFactor + displacementX,
-           LayerHeight-TracksAsCoord[k][i].y * GlobalMappingFactor - displacementY)
+      TrackLayer.line(lastPoint.x *GlobalMappingFactor + displacementX +ImageX,
+          LayerHeight-lastPoint.y * GlobalMappingFactor-displacementY-ImageY,
+           TracksAsCoord[k][i].x * GlobalMappingFactor + displacementX+ImageX,
+           LayerHeight-TracksAsCoord[k][i].y * GlobalMappingFactor - displacementY-ImageY)
       lastPoint=TracksAsCoord[k][i];
     }
   }
@@ -234,6 +240,7 @@ function mergeLayers(){
   TitleLayer.background(255);
   
   TitleLayer.image(TrackLayer,(1-Padding)*LayerWidth/2, (1-Padding)*LayerHeight/2,LayerWidth*Padding,LayerHeight*Padding);
+  TitleLayer.fill(document.getElementById("FontC").value);
   TitleLayer.textSize(LocationFontSize);
 
   TitleLayer.text(LocationName,LocationX,LocationY);
