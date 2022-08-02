@@ -1,0 +1,136 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-family: Roboto;
+  background-color: white;
+  justify-content:center;
+  font-family: 'Roboto', sans-serif;
+}
+h1{
+  text-align:center;
+  font-size: 70px;
+}
+canvas {
+  
+  border-radius:7px;
+  border-width:3px;
+  border-style:solid;
+  margin-right:auto;
+  margin-left:auto;
+  display:block;
+  
+    
+}
+#GPXUploaderWrapper{
+  
+  height:50px;
+  
+  margin-right:auto;
+  margin-left:auto;
+  position:relative;
+}
+#GPXUploader{
+  position:absolute;
+  top:10px;
+  left:-20px;
+  
+  
+  
+}
+
+#gridframe{
+
+  position:relative;
+  padding:10px;
+  margin-right:auto;
+  margin-left:auto;
+  
+}
+.grid{
+  padding:5px;
+  display:grid;
+  min-width:300px;
+  border-style:solid;
+  border-radius:5px;
+  border-width:2px;
+  width:70%;
+  max-width: 700px;
+  margin-right:auto;
+  margin-left:auto; 
+  position:relative;
+  display:grid;
+
+  grid-template-columns:repeat(auto-fill,minmax(140px,1fr));
+  grid-gap:5px;
+  
+  
+}
+.item{
+  position:relative;
+  margin-right:auto;
+  margin-left:auto;
+  width:140px;
+  font-family: 'Roboto';
+   
+}
+.ResetButtonWrapper{
+  min-width:300px;
+  width:70%;
+  height:20px;
+  max-width: 700px;
+  margin-right:auto;
+  margin-left:auto; 
+  position:relative; 
+}
+#ResetButton{
+  top: -5px;
+  position:absolute;
+  right:0px;
+  background-color:#eaeaea;
+  border-style:solid;
+  border-width:2px;
+  border-radius:5px;
+  font-family: 'Roboto', sans-serif;
+}
+#DownloadButton{ 
+  position:absolute;
+  height:55px;
+  width:150px;
+  margin-left: auto;
+  margin-right: auto;
+  left: 0;
+  right: 0;
+  bottom:30px;
+  top:40px;
+  font-size: 20px;
+  background-color:#eaeaea;
+  border-style:solid;
+  border-width:2px;
+  border-radius:5px;
+  font-family: 'Roboto', sans-serif;
+ 
+
+ 
+  
+  
+}
+.DownloadButtonWrapper{
+   position:relative;
+   height:120px;
+  
+
+  
+}
+input[type='radio'] {
+    position:relative;
+    margin-top:auto;
+    margin-bottom:auto;
+  
+    accent-color: #232323;
+}
+
+
+
+
+

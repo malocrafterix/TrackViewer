@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <h1>TrackViewer</h1>
+
+   
+  
+     <div id="sketch-holder">
+       </div>
+    <div id="GPXUploaderWrapper">
+      
+       
+         <input
+      type="file"
+      id="GPXUploader"
+      accept=".gpx,.xml"
+      name="GPXUploader"
+      onChange="upload(event)"
+      multiple
+    />
+       
+         
+       </div>
+    
+       
+
+  
+<div id = "gridframe">
+        
+       <div class= "grid">
+         
+         <div class ="item">
+           
+         <div id = "Status"> Status: Ready
+           </div>
+           </div>
+          <div class ="item">
+            <label for="format"> Format:</label>
+    <select name="format" id="format" OnChange = "OnChangedFormat()" style="width: 60px; font-family: 'Roboto';font-size: 14px;">
+      <option value="4/3">4/3</option>
+      <option value="3/2">3/2</option>
+      <option value="1/1">Quadrat</option>
+      <option value="2/3">2/3</option>
+      <option value="3/4">3/4</option>
+      </select>
+           
+           </div>
+          <div class ="item">
+            <label for="Padding">Padding:</label>
+            <input type ="number" id="Padding" name="Padding"style="width: 45px;font-family: 'Roboto';font-size: 14px; "value="0.9" step = "0.1" min = "0.1" max = "1" OnChange = "mergeLayers()" />
+         
+            
+         
+   
+    
+    
+      
+         
+    </div>
+          
+        
+        
+         <div class ="item">
+            <label for="Zoom">Zoom:</label>
+            <input type ="number" id="Zoom" name="Zoom"style="width: 45px; font-family: 'Roboto';font-size: 14px;"value="1"  min = "1"step = "0.1" OnChange = "drawCanvas()" />
+         
+
+    
+           </div>
+          <div class ="item">
+            <label for="Location">Location: </label>
+             <input type="radio" id="Location"
+           name="LorR" value="Location" checked="checked" onClick="radioboxListener()">
+         </div>
+         <div class ="item">
+            <label for="Region">Region: </label>
+             <input type="radio" id="Region"
+           name="LorR" value="Region" onClick="radioboxListener()">
+         </div>
+         <div class ="item">
+            <label for="xCoord">XCoord:</label>
+           <input type ="number" id="xCoord" name="xCoord"style="width: 50px; font-family: 'Roboto';font-size: 14px"value="150"  step = "1" onChange="changeTextfields()"/>
+
+           </div>
+         <div class ="item">
+            <label for="yCoord">YCoord:</label>
+           <input type ="number" id="yCoord" name="yCoord"style="width: 50px; font-family: 'Roboto';font-size: 14px"value="1250"  step = "1" onChange="changeTextfields()"/>
+
+           </div>
+         <div class ="item">
+         <label for="name">Name:</label>
+  <input type="text" id="name" name="name"style="width: 60px; font-family: 'Roboto';font-size: 14px"value="Location"  onChange="changeTextfields()">
+             </div>
+         
+    
+         <div class ="item">
+            <label for="fSize">Font-Size:</label>
+           <input type ="number" id="fSize" name="fSize"style="width: 40px; font-family: 'Roboto';font-size: 14px"value="150"  step = "1" onChange="changeTextfields()"/>
+
+           </div>
+         
+ <div class ="item">
+            <label for="TrackWidth">Track-Width:</label>
+           <input type ="number" id="TrackWidth" name="TrackWidth"style="width: 22px; font-family: 'Roboto';font-size: 12px"value="4"  step = "1"  min = "1" onChange="drawCanvas()"/>
+
+           </div>
+         <div class ="item">
+         <label for="fname">Filename:</label>
+  <input type="text" id="fname" name="fname"style="width: 42px; font-family: 'Roboto';font-size: 14px" value="Untitled" >
+             </div>
+         
+         </div>
+          </div>
+    <div class = "ResetButtonWrapper">
+     <button type="button"
+            id = "ResetButton"
+            onClick="window.location.reload();">Reset</button>
+      </div>
+     <div class = "DownloadButtonWrapper">
+    <button type="button"
+            id = "DownloadButton"
+            
+            onClick="saveImage()"> Download Image</button>
+    </div>
+    
+     
+    
+     
+     
+      
+         
+
+          
+             
+          
+    <script>
+       let AllTracks = [];
+   
+      const upload = async (event) => {
+        document.getElementById("Status").style.color = 'red';
+        document.getElementById("Status").innerHTML = "Status: Loading..."
+
+          // Convert the FileList into an array and iterate
+let files = Array.from(event.target.files).map(file => {
+
+              // Define a new file reader
+              let reader = new FileReader();
+
+              // Create a new promise
+              return new Promise(resolve => {
+
+                  // Resolve the promise after reading file
+                  reader.onload = () => resolve(reader.result);
+
+                  // Read the file as a text
+                  reader.readAsText(file);
+
+
+              });
+
+          });
+
+          // At this point you'll have an array of results
+          stringToXML(await Promise.all(files))
+
+      }
+      function stringToXML(StringArray){
+        parser = new DOMParser();
+        let errorNode;
+        
+        for(let k= 0;k<StringArray.length;k++){
+          let Track = [];
+          let XMLDoc = parser.parseFromString(StringArray[k],"text/xml");
+          errorNode = XMLDoc.querySelector('parsererror');
+if (errorNode) {
+  break;
+} else {
+          
+                let LatLon = XMLDoc.getElementsByTagName("trkpt")
+                for (let i = 0; i<LatLon.length ;i++){
+                  let TrackPoint = [];
+                  TrackPoint.push(LatLon[i].getAttribute("lat"));
+                  TrackPoint.push(LatLon[i].getAttribute("lon"));
+                  Track.push(TrackPoint);
+
+
+                }
+        }
+          AllTracks.push(Track)
+        }
+        if (errorNode) {
+            document.getElementById("Status").innerHTML = "Status: Error"
+        }
+        else{
+          if(AllTracks.length != 0){
+        prepareDrawing(AllTracks)
+          }
+          else{
+             document.getElementById("Status").style.color = 'black';
+            
+             document.getElementById("Status").innerHTML = "Status: Ready"
+          }
+        }
+
+      }
+
+    
+            
+    
+    </script>
+    <script src="sketch.js"></script>
+    <script src="CanvasScaling.js"></script>
+    
+  
+  </body>
+</html>
