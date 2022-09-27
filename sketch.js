@@ -222,7 +222,7 @@ async function drawCanvas(){
     
     lastPoint = TracksAsCoord[k][0];
     for(let i = 1; i<TracksAsCoord[k].length;i++){
-    if(TracksAsCoord[k][i].dist(TracksAsCoord[k][i-1])<0.001){ 
+    if(TracksAsCoord[k][i].dist(TracksAsCoord[k][i-1])<0.0002){ 
 TrackLayer.strokeWeight(TrackWidth)
       TrackLayer.line(lastPoint.x *GlobalMappingFactor + displacementX +ImageX,
           LayerHeight-lastPoint.y * GlobalMappingFactor-displacementY-ImageY,
