@@ -1,0 +1,32 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: CaviTools
+message: >-
+  If you use this software, please cite it using the
+  metadata from this file.
+type: software
+authors:
+  - given-names: Mathis
+    family-names: Giese
+    orcid: 'https://orcid.org/0009-0005-5460-359X'
+  - given-names: Yanick
+    family-names: Ziegler
+    orcid: 'https://orcid.org/0000-0002-6376-0803'
+  - given-names: Nadine
+    family-names: Ruehr
+    orcid: 'https://orcid.org/0000-0001-5989-7463'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.11146864
+repository-code: 'https://codebase.helmholtz.cloud/kl2011/cavitools'
+abstract: >-
+  Cavitools offers automated processing scripts (Python,
+  terminal-based) to detect and quantify embolism events in
+  image time series of plant xylem material (stems or
+  leaves) based on the Optical Method and to analyse optical
+  dendrometry image sequences.
+license: MIT
+version: '1.0'
+date-released: '2024-05-08'
